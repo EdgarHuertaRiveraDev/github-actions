@@ -1,0 +1,22 @@
+name: Aprendiendo Github Actions
+run-name: ¡Estoy aprendiendo github actions!
+on:
+"aprendiendo-github-actions" branch
+  push:
+    branches: ["github-action]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -name: Checkout repository
+      uses: actions/checkout@v4
+      #Setup kotlin for the Environment
+      -name: Setup Kotlin
+      uses: fwilhe2/setup-kotlin@0.2.0
+      with:
+        version: 1.9.23
+      -name: Compile Kotlin code
+      run: kotlinc Main.kt -include-runtime -d Main.jar
+      -name: Run compiled Kotlin code
+      run: java -jar Main.jar
