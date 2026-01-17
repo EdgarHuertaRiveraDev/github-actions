@@ -12,4 +12,6 @@ jobs:
         uses: fwilhe2/setup-kotlin@v1
 
       - name: Ejecutar Kotlin directamente
-        run: kotlinc -script Main.kt
+        run: |
+          kotlinc Main.kt -include-runtime -d Main.jar
+          java -jar Main.jar
