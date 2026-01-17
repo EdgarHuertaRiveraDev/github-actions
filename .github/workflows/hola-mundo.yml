@@ -1,4 +1,5 @@
 name: Hola Mundo Kotlin
+run-name: Expresiones
 on: 
   workflow_dispatch:
     inputs:
@@ -11,7 +12,8 @@ on:
         required: true
         type: string
 jobs:
-  rama:
+  acceso_permitido:
+    if: ${{ inputs.user == 'edgar' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,3 +29,9 @@ jobs:
         run: |
           kotlinc Main.kt -include-runtime -d Main.jar
           java -jar Main.jar
+  acceso_denegado:
+    if: ${{ inputs.user != 'edgar'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Denegado
+        run: echo "usuario  ${{ inputs.user }} denegado"
