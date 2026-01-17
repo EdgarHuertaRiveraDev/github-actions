@@ -1,0 +1,29 @@
+name: Hola Mundo Kotlin
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Ingresa la rama de donde quieres ejecutar el workflow"
+        required: true
+        type: string
+      user:
+        description: "Ingresa tu usuario"
+        required: true
+        type: string
+jobs:
+  rama:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Imprimir rama
+        run: echo ${{ inputs.branch }} rama ejecutada
+      
+      - name: Setup Kotlin
+        uses: fwilhe2/setup-kotlin@v1
+
+      - name: Ejecutar Kotlin directamente
+        run: |
+          kotlinc Main.kt -include-runtime -d Main.jar
+          java -jar Main.jar
