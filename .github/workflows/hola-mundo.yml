@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Imprimir rama
-        run: echo ${{ inputs.branch }} rama ejecutada
+        run: echo ${{ inputs.branch }}
       
       - name: Setup Kotlin
         uses: fwilhe2/setup-kotlin@v1
